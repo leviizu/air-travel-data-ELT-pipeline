@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: air_travel
+    database: aviation_raw
+    schema: air_travel
+    tables:
+      - name: boarding_passes
+      - name: bookings
+      - name: flights
+      - name: tickets
+      - name: ticket_flights
+
+
