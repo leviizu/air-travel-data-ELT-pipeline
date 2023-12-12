@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: air_travel_fivetran
+    database: aviation_raw
+    schema: air_travel_fivetran
+    tables:
+      - name: aircraft_aircraft
+      - name: airport_data_airport
+      - name: seats_seats
