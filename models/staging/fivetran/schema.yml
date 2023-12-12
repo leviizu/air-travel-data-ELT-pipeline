@@ -1,8 +1,8 @@
 version: 2
 
-sources:
-  - name: aircraft_aircraft
-    description: 
+models:
+  - name: stg_aircrafts
+    description: table holds record for aircrafts
     columns:
       - name: aircraft_code_
         tests:
@@ -16,13 +16,13 @@ sources:
         tests:
           - not_null 
 
-      - name: _fivetran_sy
+      - name: _fivetran_synced
         tests:
           - not_null
           
 
-  - name: airport_data_airport
-    description: 
+  - name: stg_airports
+    description: this table holds records for arports
     columns:
       - name: airport_name
         tests:
@@ -44,8 +44,8 @@ sources:
       - name: _fivetran_synced
 
 
-  - name: seats_seats
-    description: 
+  - name: stg_seats
+    description: this table records seats of aircrafts
     columns:
       - name: aircraft_code
         tests:

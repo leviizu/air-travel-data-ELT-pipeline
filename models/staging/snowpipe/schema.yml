@@ -1,7 +1,7 @@
 version: 2
 
-sources:
-  - name: boarding_passes
+models:
+  - name: stg_boarding_passes
     description: This table contains boarding_passes for passengers
     columns:
       - name: ticket_no
@@ -17,7 +17,7 @@ sources:
         tests:
           - not_null
 
-  - name: bookings
+  - name: stg_bookings
     description: This table stores bookings
     columns:
       - name: book_ref
@@ -30,7 +30,7 @@ sources:
         test:
           - not_null
 
-  - name: flights
+  - name: stg_flights
     description: This table stores flight schedules
     columns:
       - name: flight_id
@@ -51,7 +51,7 @@ sources:
       - name: actual_departure
       - name: actual_arrival
 
-  - name: tickets
+  - name: stg_tickets
     description: This table stores ticket 
     columns:
       - name: ticket_no
@@ -70,7 +70,7 @@ sources:
         tests:
           - not_null
 
-  - name: ticket_flight
+  - name: stg_ticket_flights
     description: This table stores ticket 
     columns:
       - name: ticket_no
