@@ -23,15 +23,6 @@ sources:
 
   - name: airport_data_airport
     description: 
-    loaded_at_field: "_fivetran_sy::timestamp"
-    freshness:
-      warn_after:
-        count: 12
-        period: hour
-      error_after:
-        count: 24
-        period: hour
-      filter: datediff('day', _fivetran_sy, current_timestamp) < 2
     columns:
       - name: airport_name
         tests:

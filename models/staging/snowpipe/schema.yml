@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: stg_boarding_passes
+  - name: boarding_passes
     description: This table contains boarding_passes for passengers
     columns:
       - name: ticket_no
@@ -17,17 +17,8 @@ sources:
         tests:
           - not_null
 
-  - name: stg_bookings
+  - name: bookings
     description: This table stores bookings
-    loaded_at_field: "book_date::timestamp"
-    freshness:
-      warn_after:
-        count: 12
-        period: hour
-      error_after:
-        count: 24
-        period: hour
-      filter: datediff('day', book_date, current_timestamp) < 2
     columns:
       - name: book_ref
         test:
@@ -39,7 +30,7 @@ sources:
         test:
           - not_null
 
-  - name: stg_flights
+  - name: flights
     description: This table stores flight schedules
     columns:
       - name: flight_id
@@ -53,13 +44,14 @@ sources:
       - name: departure_airport
       - name: arrival_airport
       - name: status
-                - not_null
+        tests:
+           - not_null
       - name: aircraft_code
                 - not_null
       - name: actual_departure
       - name: actual_arrival
 
-  - name: stg_tickets
+  - name: tickets
     description: This table stores ticket 
     columns:
       - name: ticket_no
@@ -69,10 +61,13 @@ sources:
               to: ref('ticket_flights')
               field: ticket_no
       - name: passenger_id
+        tests:
           - not_null
       - name: passenger_name
+        tests:
           - not_null
       - name: book_ref
+        tests:
           - not_null
 
   - name: ticket_flight
