@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: aircraft_aircraft
+    description: 
+    columns:
+      - name: aircraft_code_
+        tests:
+          - not_null 
+
+      - name: range
+        tests:
+          - not_null 
+
+      - name: model
+        tests:
+          - not_null 
+
+      - name: _fivetran_sy
+        tests:
+          - not_null
+          
+
+  - name: airport_data_airport
+    description: 
+    loaded_at_field: "_fivetran_sy::timestamp"
+    freshness:
+      warn_after:
+        count: 12
+        period: hour
+      error_after:
+        count: 24
+        period: hour
+      filter: datediff('day', _fivetran_sy, current_timestamp) < 2
+    columns:
+      - name: airport_name
+        tests:
+          - not_null
+          
+      - name: city
+        tests:
+          - not_null
+          
+      - name: timezone
+        tests:
+          - not_null
+          
+      - name: airport_code
+        tests:
+          - not_null
+          
+      - name: coordinates
+      - name: _fivetran_synced
+
+
+  - name: seats_seats
+    description: 
+    columns:
+      - name: aircraft_code
+        tests:
+          - not_null
+          - relationships:
+              to: ref('airport_data_airport')
+              field: airport_code
+          
+      - name: seat_no
+        tests:
+          - not_null
+          
+      - name: fare_conditions
+        tests: 
+          - not_null
+    
+      - name: _fivetran_synced
+
