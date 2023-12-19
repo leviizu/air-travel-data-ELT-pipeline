@@ -20,3 +20,5 @@ aircrafts as (
 
 select * 
 from aircrafts_renamed
+
+--let's apply CI/CD
