@@ -85,4 +85,16 @@ models:
       - name: amount
         test:
           - not_null
-            
+
+
+
+        # Invalid sources config given in models/staging/snowpipe/schema.yml 
+        # @ sources: {'name': 'stg_boarding_passes', 'description': 
+        #   'This table contains boarding_passes for passengers', 
+        # 'columns': [{'name': 'ticket_no', 'tests': ['not_null']},
+        #  {'name': 'flight_id', 'tests': ['not_null']},
+        #   {'name': 'boarding_no', 'tests': ['not_null']}, 
+        #   {'name': 'seat_no', 'tests': ['not_null']}]} 
+
+        #   - at path []: Additional properties are not allowed 
+        #   ('columns' was unexpected)     
