@@ -26,3 +26,5 @@ flights as (
 
 select * 
 from flights_renamed
+
+--Let's apply CI/CD
