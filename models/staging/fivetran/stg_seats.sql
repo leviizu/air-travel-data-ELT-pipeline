@@ -20,3 +20,7 @@ seats as (
 
 select * 
 from seats_renamed
+
+
+
+ 

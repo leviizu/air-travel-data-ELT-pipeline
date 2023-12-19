@@ -10,8 +10,8 @@ bookings as (
 
     select 
         book_ref
-        book_date
-        total_amount
+        ,book_date
+        ,total_amount
     from 
         bookings
  

@@ -14,7 +14,7 @@ tickets as (
         ,passenger_name
         ,book_ref
     from 
-        ticket_flights
+        tickets
  
 )
 
