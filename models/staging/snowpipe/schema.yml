@@ -1,6 +1,6 @@
 version: 2
 
-sources:
+models:
   - name: stg_boarding_passes
     description: This table contains boarding_passes for passengers
     columns:
@@ -19,15 +19,6 @@ sources:
 
   - name: stg_bookings
     description: This table stores bookings
-    loaded_at_field: "book_date::timestamp"
-    freshness:
-      warn_after:
-        count: 12
-        period: hour
-      error_after:
-        count: 24
-        period: hour
-      filter: datediff('day', book_date, current_timestamp) < 2
     columns:
       - name: book_ref
         test:
@@ -53,7 +44,8 @@ sources:
       - name: departure_airport
       - name: arrival_airport
       - name: status
-                - not_null
+        tests:
+           - not_null
       - name: aircraft_code
                 - not_null
       - name: actual_departure
@@ -69,13 +61,16 @@ sources:
               to: ref('ticket_flights')
               field: ticket_no
       - name: passenger_id
+        tests:
           - not_null
       - name: passenger_name
+        tests:
           - not_null
       - name: book_ref
+        tests:
           - not_null
 
-  - name: ticket_flight
+  - name: stg_ticket_flights
     description: This table stores ticket 
     columns:
       - name: ticket_no
@@ -90,4 +85,16 @@ sources:
       - name: amount
         test:
           - not_null
-            
+
+
+
+        # Invalid sources config given in models/staging/snowpipe/schema.yml 
+        # @ sources: {'name': 'stg_boarding_passes', 'description': 
+        #   'This table contains boarding_passes for passengers', 
+        # 'columns': [{'name': 'ticket_no', 'tests': ['not_null']},
+        #  {'name': 'flight_id', 'tests': ['not_null']},
+        #   {'name': 'boarding_no', 'tests': ['not_null']}, 
+        #   {'name': 'seat_no', 'tests': ['not_null']}]} 
+
+        #   - at path []: Additional properties are not allowed 
+        #   ('columns' was unexpected)     

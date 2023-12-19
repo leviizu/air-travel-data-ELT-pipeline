@@ -4,6 +4,15 @@ sources:
   - name: air_travel_fivetran
     database: aviation_raw
     schema: air_travel_fivetran
+    loaded_at_field: "_fivetran_sy::timestamp"
+    freshness:
+      warn_after:
+        count: 24
+        period: hour
+      error_after:
+        count: 48
+        period: hour
+      filter: datediff('day', _fivetran_sy, current_timestamp) < 2
     tables:
       - name: aircraft_aircraft
       - name: airport_data_airport
