@@ -22,3 +22,4 @@ select *
 from aircrafts_renamed
 
 --let's apply CI/CD
+--integrate webhooks for run complete alert
