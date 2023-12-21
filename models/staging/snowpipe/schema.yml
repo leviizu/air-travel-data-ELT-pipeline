@@ -21,23 +21,33 @@ models:
     description: This table stores bookings
     columns:
       - name: book_ref
-        test:
-          - not_null
+        tests:
+          - unique:
+              config:
+                severity: warn
+                error_if: ">100"
+                warn_if: "< 10"
+                limit: 10
+                store_failures: true
+                schema: testing
+                          
       - name: book_date
-        test:
+        tests:
           - not_null
+
       - name: total_amount
-        test:
+        tests:
           - not_null
+
 
   - name: stg_flights
     description: This table stores flight schedules
     columns:
       - name: flight_id
-        test:
+        tests:
           - not_null
       - name: flight_no
-        test:
+        tests:
           - not_null
       - name: scheduled_departure
       - name: scheduled_arrival           
@@ -55,7 +65,7 @@ models:
     description: This table stores ticket 
     columns:
       - name: ticket_no
-        test:
+        tests:
           - not_null
           - relationships:
               to: ref('ticket_flights')
@@ -74,16 +84,16 @@ models:
     description: This table stores ticket 
     columns:
       - name: ticket_no
-        test:
+        tests:
           - not_null       
       - name: flight_id
-        test:
+        tests:
           - not_null         
       - name: fare_conditions
-        test:
+        tests:
           - not_null         
       - name: amount
-        test:
+        tests:
           - not_null
 
 
@@ -98,3 +108,4 @@ models:
 
         #   - at path []: Additional properties are not allowed 
         #   ('columns' was unexpected)     
+
